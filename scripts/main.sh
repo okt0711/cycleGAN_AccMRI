@@ -1,0 +1,27 @@
+export CUDA_VISIBLE_DEVICES=0
+python3 main.py \
+--dataroot_A './fastMRI/full' \
+--dataroot_B './fastMRI/down4_1D' \
+--nEpoch 200 \
+--decay_epoch 100 \
+--lr 2e-4 \
+--disp_div_N 30 \
+--batch_size 1 \
+--nC 1 \
+--nX 640 \
+--ngf 32 \
+--ndf 64 \
+--norm 'instance' \
+--L1_lambda 10 \
+--iden_lambda 0 \
+--beta1 0.5 \
+--beta2 0.99 \
+--pool_size 50 \
+--is_training \
+--use_lsgan \
+--generator 'unet' \
+--discriminator 'basic' \
+--gpu_ids '0' \
+--savepath './Results/cycleGAN_AccMRI' \
+--name '1D_DS4_unet_lsgan' \
+--n_critic 1

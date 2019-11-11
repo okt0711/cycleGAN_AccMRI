@@ -1,0 +1,29 @@
+export CUDA_VISIBLE_DEVICES=0
+python3 main_fft.py \
+--dataroot_A './fastMRI/full' \
+--dataroot_B './fastMRI/down4_1D' \
+--nEpoch 100 \
+--decay_epoch 100 \
+--lr 1e-4 \
+--disp_div_N 30 \
+--batch_size 1 \
+--nC 1 \
+--nX 640 \
+--ngf 32 \
+--ndf 64 \
+--norm 'instance' \
+--L1_lambda 0.5 \
+--iden_lambda 0 \
+--GP_lambda 5 \
+--beta1 0.5 \
+--beta2 0.9 \
+--pool_size 50 \
+--is_training \
+--use_wgan \
+--generator 'unet' \
+--discriminator 'basic' \
+--gpu_ids '0' \
+--savepath './Results/cycleGAN_AccMRI' \
+--name '1D_DS4_unet_fft_wgan' \
+--n_critic 5 \
+--DSrate 4

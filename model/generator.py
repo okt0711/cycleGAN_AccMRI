@@ -16,8 +16,8 @@ class UnetGenerator:
     def __call__(self, input):
         with tf.variable_scope(self.name):
             sz = tf.shape(input)
-            padY = (16 - sz[1] % 16)
-            padded_input = tf.pad(input, [[0, 0], [padY / 2, padY / 2], [0, 0], [0, 0]], 'CONSTANT')
+            padY = tf.cast(((16 - sz[1] % 16) % 16) / 2, tf.int32)
+            padded_input = tf.pad(input, [[0, 0], [padY, padY], [0, 0], [0, 0]], 'CONSTANT')
 
             CBR_64_down1 = CBR_k(padded_input, self.ngf, is_training=self.is_training, norm=None, reuse=self.reuse,
                                  name='CBR_64_down1')
